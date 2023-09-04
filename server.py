@@ -5,8 +5,8 @@ import time
 import re
 
 DRIVER_NAME = "SQL SERVER"
-SERVER_NAME = "PLNB027\SQLEXPRESS01"
-DATABASE_NAME = "Office"
+SERVER_NAME = "Your server"
+DATABASE_NAME = "Your database name"
 
 connection_string = f"""
     DRIVER={{{DRIVER_NAME}}};
