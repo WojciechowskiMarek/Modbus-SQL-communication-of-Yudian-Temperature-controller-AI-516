@@ -30,7 +30,7 @@ while True:
     SP1 = client.read_holding_registers(0x00,1,0x01) #SP1 given value
     HIAL = client.read_holding_registers(0x01,1,0x01) # HIAL upper limit alarm
     LOAL = client.read_holding_registers(0x02,1,0x01) # LOAL upper limit alarm
-    DIAG = client.read_holding_registers(0xe8,2,0x01) # HIAL upper limit alarm
+    DIAG = client.read_holding_registers(0xe8,2,0x01) # DIAG upper limit alarm
     a = (PV.registers[0]/10)
     b = (SV.registers[0]/10)
     c = (HIAL.registers[0]/10)
