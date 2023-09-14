@@ -40,14 +40,12 @@ while True:
     SP1 = client.read_holding_registers(0x00,1,0x01) #SP1 given value
     HIAL = client.read_holding_registers(0x01,1,0x01) # HIAL upper limit alarm
     LOAL = client.read_holding_registers(0x02,1,0x01) # LOAL upper limit alarm
-    DIAG = client.read_holding_registers(0x4d,1,0x01) # DIAG register                DIAG 4d byte  ---> 1 bit -! OP1 (turned on heating)
-                                                                                    #              ---> 2 bit -! OP2,
-                                                                                    #              ---> 3 bit -! AU1 - error bit
-                                                                                    #              ---> 4 bit -! AU2 - error bit,
-                                                                                    #              ---> 5 bit -! MIO
-                                                                                    # 0b11111000000000 - state of controller word 4d, without any alarms etc. 
-    #aaa = bin(aa)    
-    #print(aaa)
+    DIAG = client.read_holding_registers(0x4d,1,0x01) # DIAG register DIAG 4d byte  ---> 1 bit -! OP1 (turned on heating)
+                                                                     #              ---> 2 bit -! OP2,
+                                                                     #              ---> 3 bit -! AU1 - error bit
+                                                                     #              ---> 4 bit -! AU2 - error bit,
+                                                                     #              ---> 5 bit -! MIO
+                                                                     # 0b11111000000000 - state of controller word 4d, without any alarms etc. 
     diag_register = int(DIAG.registers[0])
     OP1 = is_set(diag_register,8)
     OP2 = is_set(diag_register,9)
