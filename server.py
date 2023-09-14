@@ -33,13 +33,13 @@ ID_Value = int(Last_Max_ID_SQL) + 1
 def is_set(x, n):
     return (x & 2 ** n != 0) 
 while True:
-    PV = client.read_holding_registers(0x4a,1,0x01) #PV value                   ############## ---> 1 bit -! OP1 (turned on heating)
-    SV = client.read_holding_registers(0x4b,1,0x01) #SV value                   #              ---> 2 bit -! OP2,
-    SP1 = client.read_holding_registers(0x00,1,0x01) #SP1 given value           #              ---> 2 bit -! OP2,
-    HIAL = client.read_holding_registers(0x01,1,0x01) # HIAL upper limit alarm  # DIAG 4d byte ---> 3 bit -! AU1 - error bit
-    LOAL = client.read_holding_registers(0x02,1,0x01) # LOAL upper limit alarm  #              ---> 4 bit -! AU2 - error bit,
-    DIAG = client.read_holding_registers(0x4d,1,0x01) # DIAG register           #              ---> 5 bit -! MIO # 
-    diag_register = int(DIAG.registers[0])                                      # 0b11111000000000 - state of controller word 4d, without any alarms etc. 
+    PV = client.read_holding_registers(0x4a,1,0x01) #PV value                   ############## ---> 8 bit -! OP1 (turned on heating)
+    SV = client.read_holding_registers(0x4b,1,0x01) #SV value                   #              ---> 9 bit -! OP2,
+    SP1 = client.read_holding_registers(0x00,1,0x01) #SP1 given value           #              --->10 bit -! AU1, - error bit
+    HIAL = client.read_holding_registers(0x01,1,0x01) # HIAL upper limit alarm  # DIAG 4d byte --->11 bit -! AU2  - error bit,
+    LOAL = client.read_holding_registers(0x02,1,0x01) # LOAL upper limit alarm  #              --->12 bit -! MIO 
+    DIAG = client.read_holding_registers(0x4d,1,0x01) # DIAG register           # 0b11111000000000 - state of controller word 4d, without any alarms etc.             
+    diag_register = int(DIAG.registers[0])                                       
     OP1 = is_set(diag_register,8)
     OP2 = is_set(diag_register,9)
     AU1 = is_set(diag_register,10)
