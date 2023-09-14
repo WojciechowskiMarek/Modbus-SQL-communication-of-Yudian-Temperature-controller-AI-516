@@ -7,8 +7,8 @@ from datetime import datetime,date,time
 import logging
 
 DRIVER_NAME = "SQL SERVER"
-SERVER_NAME = "PLNB027\SQLEXPRESS01"
-DATABASE_NAME = "Office"
+SERVER_NAME = "YOUR SERVER NAME"
+DATABASE_NAME = "YOUR DATABASE NAME"
 
 connection_string = f"""
     DRIVER={{{DRIVER_NAME}}};
